@@ -1,0 +1,18 @@
+[Unit]
+Description=A web api that says hello
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+Restart=on-failure
+ExecStart="/var/www/my-site/hello-server"
+
+StandardOutput=append:/var/log/hello-server/backend.log
+StandardError=append:/var/log/hello-server/backend.log
+SyslogIdentifier=hello-server
+
+[Install]
+WantedBy=multi-user.target
+
